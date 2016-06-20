@@ -6,7 +6,7 @@
         <title>Translate</title>
     </head>
     <body>
-        <p>번역기</p>
+        <p>오타-쿠</p>
         <textarea rows="4" class="femme" placeholder="문장을 입력해주세요"></textarea>
         
         <p><button type="button" class="change">변환</button></p>
@@ -27,6 +27,8 @@
         return Hangul.assemble(d);
     }).join('');
 };
+            
+            console.log(femme("완료"));
 
 $(function() {
     $('.change').on('click', function() {
