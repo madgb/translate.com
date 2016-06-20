@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Translate</title>
+    </head>
+    <body>
+        <p>번역기</p>
+        <textarea rows="4" class="femme" placeholder="문장을 입력해주세요"></textarea>
+        
+        <p><button type="button" class="change">변환</button></p>
+        
+        <p><textarea rows="4" class="result"></textarea></p>
+        
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="hangul.js" type="text/javascript"></script>
+        <script>
+            var femme = function(str) {
+    return str.split('').map(function(char) {
+        var d = Hangul.disassemble(char);
+        if(d[3] && Hangul.isVowel(d[1]) && Hangul.isVowel(d[2])) {
+            var tmp = d['3'];
+            d[3] = d[2];
+            d[2] = tmp;
+        }
+        return Hangul.assemble(d);
+    }).join('');
+};
+
+$(function() {
+    $('.change').on('click', function() {
+        console.log(femme($('.femme').val()));
+        $('.result').text(femme($('.femme').val()));
+    })
+});
+        </script>
+        
+
+    </body>
+</html>
